@@ -1,25 +1,21 @@
-﻿using System;
+﻿using GrowleriaPOS.Controllers;
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+using System.Windows.Forms;
 
-namespace GrowleriaPOS
+namespace GrowleriaPOS 
 {
-    public class Program
+    class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            PrinterController controller = PrinterController.Instance;
+            controller.OpenConnection();
+            controller.PrintSalesTicket();
+            controller.CloseConnection();
         }
-
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
     }
 }
