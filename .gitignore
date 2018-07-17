@@ -18,3 +18,16 @@
 /.vs/GrowleriaPOS/v15/Server/sqlite3/storage.ide
 /.vs/GrowleriaPOS/v15/Server/sqlite3/storage.ide-shm
 /.vs/GrowleriaPOS/v15/Server/sqlite3/storage.ide-wal
+GrowleriaController.deps.json
+GrowleriaController.dll
+GrowleriaController.pdb
+GrowleriaController.AssemblyInfo.cs
+GrowleriaController.AssemblyInfoInputs.cache
+GrowleriaController.csproj.CoreCompileInputs.cache
+GrowleriaController.csproj.FileListAbsolute.txt
+GrowleriaController.csprojAssemblyReference.cache
+GrowleriaController.csproj.nuget.cache
+GrowleriaController.csproj.nuget.g.props
+GrowleriaController.csproj.nuget.g.targets
+project.assets.json
+/.vs/GrowleriaPOS/DesignTimeBuild/.dtbcache
