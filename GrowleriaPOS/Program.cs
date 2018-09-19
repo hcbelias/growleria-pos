@@ -12,7 +12,7 @@ namespace GrowleriaPOS
     {
         static void Main(string[] args)
         {
-            PrinterController controller = PrinterController.Instance;
+            PrinterController controller = new PrinterController();
             controller.OpenConnection();
             controller.PrintSalesTicket();
             controller.CloseConnection();

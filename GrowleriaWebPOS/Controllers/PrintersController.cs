@@ -1,49 +1,69 @@
 ﻿
 using GrowleriaPOS.Controllers;
+using GrowleriaPOS.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace GrowleriaWebPOS.Controllers
 {
+    class ResponseError : ResponseMessage
+    {
+        public ResponseError(string errorMessage, Exception exception) : base(errorMessage)
+        {
+            this.ErrorException = exception;
+        }
+        public Exception ErrorException { get; set; }
+    }
+
+    class ResponseMessage
+    {
+        public ResponseMessage(string message)
+        {
+            this.Message = message;
+        }
+        public String Message { get; set; }
+    }
     public class PrintersController : ApiController
     {
         // GET api/values
-        public bool Get()
+        public IHttpActionResult Get()
         {
-            PrinterController controller = PrinterController.Instance;
+            PrinterController controller = new PrinterController();
             var connect = controller.OpenConnection();
             if (!connect)
-                return false;
+            {
+                return Json<ResponseMessage>(new ResponseError("Erro ao conectar", controller.Error));
+            }
             var print = controller.PrintTest();
-            if (!print)
-                return false;
             var close = controller.CloseConnection();
-            return close;
-        }
-
-        // GET api/values/5
-        public string Get(int id)
-        {
-            return "value";
+            if (!print)
+            {
+                return Json<ResponseMessage>(new ResponseError("Erro ao Imprimir", controller.Error));
+            }
+            return Json<ResponseMessage>(new ResponseMessage("Operação concluida"));
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        public IHttpActionResult Post([FromBody]CashierModel value)
         {
-        }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
+            PrinterController controller = new PrinterController();
+            var connect = controller.OpenConnection();
+            if (!connect)
+            {
+                return Json<ResponseMessage>(new ResponseError("Erro ao conectar", controller.Error));
+            }
+            var print = controller.PrintEmployeeCashier(value);
+            var close = controller.CloseConnection();
+            if (!print)
+            {
+                return Json<ResponseMessage>(new ResponseError("Erro ao Imprimir", controller.Error));
+            }
+            return Json<ResponseMessage>(new ResponseMessage("Operação concluida"));
         }
     }
 }

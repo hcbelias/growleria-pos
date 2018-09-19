@@ -1,5 +1,7 @@
-﻿using Microsoft.PointOfService;
+﻿using GrowleriaPOS.Models;
+using Microsoft.PointOfService;
 using System;
+using System.Configuration;
 using System.Globalization;
 using System.IO;
 
@@ -7,24 +9,19 @@ namespace GrowleriaPOS.Controllers
 {
     public class PrinterController
     {
-        string DeviceLogicName => "PosPrinter";
+        string DeviceLogicName => ConfigurationManager.AppSettings["DeviceLogicName"];
         private PosPrinter Printer { get; set; }
 
         public Exception Error { get; private set; }
 
-        // Explicit static constructor to tell C# compiler
-        // not to mark type as beforefieldinit
-        static PrinterController()
+      
+
+        public PrinterController()
         {
         }
 
-        private PrinterController()
-        {
-        }
 
-        public static PrinterController Instance { get; } = new PrinterController();
-
-        public bool PrintEmployeeCashier()
+        public bool PrintEmployeeCashier(CashierModel cashier)
         {
             //Initialization
             DateTime nowDate = DateTime.Now;                            //System date
@@ -33,64 +30,36 @@ namespace GrowleriaPOS.Controllers
             string strDate = nowDate.ToString("dd/MM/yy  HH:mm:ss", dateFormat);
             string strbcData = "4902720005074";
 
-            //try
-            //{
-            //<<<step3>>>--Start
-            Printer.PrintNormal(PrinterStation.Receipt, "\u001b|1B");
-            //<<<step3>>>--End
-
-            //Print address
-            Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N"
-                + "123xxstreet,xxxcity,xxxxstate\n");
-
-            //Print phone number
-            Printer.PrintNormal(PrinterStation.Receipt, "\u001b|rA"
-                + "TEL 9999-99-9999   C#2\n");
-            //Print date
-            //   \u001b|cA = Centaring char
-            Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + strDate + "\n\n");
-            //Print buying goods
-            Printer.PrintNormal(PrinterStation.Receipt, "apples                  $20.00\n");
-
-            Printer.PrintNormal(PrinterStation.Receipt, "grapes                  $30.00\n");
-
-            Printer.PrintNormal(PrinterStation.Receipt, "bananas                 $40.00\n");
-
-            Printer.PrintNormal(PrinterStation.Receipt, "lemons                  $50.00\n");
-
-            Printer.PrintNormal(PrinterStation.Receipt, "oranges                 $60.00\n\n");
-
-            //Print the total cost
-            //\u001b|bC = Bold
-            //\u001b|uC = Underline
-            //\u001b|2C = Wide charcter
-            Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC"
-                + "Tax excluded.          $200.00" + "\u001b|N\n");
-
-            Printer.PrintNormal(PrinterStation.Receipt, "\u001b|uC"
-                + "Tax  5.0%               $10.00" + "\u001b|N\n");
-
-            Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C"
-                + "Total   $210.00" + "\u001b|N\n");
-            Printer.PrintNormal(PrinterStation.Receipt, "Customer's payment     $250.00\n");
-            Printer.PrintNormal(PrinterStation.Receipt, "Change                  $40.00\n\n");
-            if (Printer.CapRecBarCode == true)
+            try
             {
-                Printer.PrintNormal(PrinterStation.Receipt, strbcData);
-                Printer.PrintBarCode(PrinterStation.Receipt, strbcData,
-                    BarCodeSymbology.QRCode, 80,
-                    200, PosPrinter.PrinterBarCodeCenter,
-                    BarCodeTextPosition.Above);
+                //<<<step3>>>--Start
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|1B\n\n");
+                //<<<step3>>>--End
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA\u001b|2C" + strDate + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + cashier.Store.Name + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Endereço " + cashier.Store.Address + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "CNPJ " + cashier.Store.CNPJ + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Emissor " + cashier.UserNameOpened + " | CPF " + cashier.UserOpened.CPF + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|uC" + "Caixa #" + cashier.CashierNumber + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Abertura às " + cashier.CreatedAt + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Aberto Caixa Por " + cashier.UserNameOpened + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Fechamento às " + cashier.CloseDate + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Fechado Caixa Por" + cashier.UserNameClosed + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Saldo Inicial R$" + cashier.CashierAccountBalance + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Total em Caixa R$" + (cashier.TotalAccountBalance) + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "                                            \n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + cashier.UserNameOpened + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "CPF " + cashier.UserOpened.CPF + "\n\n" );
+
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|fP");
+                this.Error = null;
+                return true;
             }
-            Printer.PrintNormal(PrinterStation.Receipt, "\u001b|fP");
-            this.Error = null;
-            return true;
-            //}
-            //catch (PosControlException err)
-            //{
-            //    this.Error = err;
-            //    return false;
-            //}
+            catch (PosControlException err)
+            {
+                this.Error = err;
+                return false;
+            }
         }
 
         public bool PrintTest()
@@ -234,33 +203,31 @@ namespace GrowleriaPOS.Controllers
         {
             string strCurDir = Directory.GetCurrentDirectory();
 
-            //try
-            //{
+            try
+            {
                 PosExplorer posExplorer = new PosExplorer();
-                DeviceInfo deviceInfo = null;
-                //try
-                //{
-                deviceInfo = posExplorer.GetDevice(DeviceType.PosPrinter, this.DeviceLogicName);
+                DeviceInfo deviceInfo = posExplorer.GetDevice(DeviceType.PosPrinter, this.DeviceLogicName);
                 Printer = (PosPrinter)posExplorer.CreateInstance(deviceInfo);
-            //}
-            //catch (Exception err)
-            //{
-            //    this.Error = err;
-            //    return false;
-            //}
-
-            Printer.Open();
-            Printer.Claim(1000);
-            Printer.DeviceEnabled = true;
-            Printer.RecLetterQuality = true;
-            this.Error = null;
-            return true;
-            //}
-            //catch (PosControlException err)
-            //{
-            //    this.Error = err;
-            //    return false;
-            //}
+                Printer.Open();
+                Printer.Claim(1000);
+                Printer.DeviceEnabled = true;
+                //Printer.AsyncMode = true;
+                Printer.RecLetterQuality = true;
+                this.Error = null;
+                return true;
+            }
+            catch (PosControlException err)
+            {
+                this.Error = err;
+                this.Printer.Close();
+                return false;
+            }
+            catch (Exception err)
+            {
+                this.Error = err;
+                this.Printer.Close();
+                return false;
+            }
         }
         public bool CloseConnection()
         {

@@ -85,19 +85,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/16/2018 23:02:37</publishTime>
     </File>
     <File Include="bin/ConsoleApp1.exe">
-      <publishTime>07/17/2018 00:43:25</publishTime>
+      <publishTime>09/17/2018 17:39:59</publishTime>
     </File>
     <File Include="bin/ConsoleApp1.exe.config">
-      <publishTime>07/16/2018 22:55:48</publishTime>
+      <publishTime>09/17/2018 17:27:50</publishTime>
     </File>
     <File Include="bin/ConsoleApp1.pdb">
-      <publishTime>07/17/2018 00:43:25</publishTime>
+      <publishTime>09/17/2018 17:39:59</publishTime>
     </File>
     <File Include="bin/GrowleriaWebPOS.dll">
-      <publishTime>07/17/2018 00:43:46</publishTime>
+      <publishTime>09/18/2018 16:38:14</publishTime>
     </File>
     <File Include="bin/GrowleriaWebPOS.pdb">
-      <publishTime>07/17/2018 00:43:46</publishTime>
+      <publishTime>09/18/2018 16:38:14</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>06/27/2017 12:59:34</publishTime>
@@ -283,13 +283,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/19/2017 10:01:30</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>02/01/2018 13:17:18</publishTime>
+      <publishTime>05/10/2018 22:38:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Cors.dll">
+      <publishTime>05/10/2018 22:37:02</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>02/01/2018 13:20:56</publishTime>
     </File>
+    <File Include="bin/System.Web.Http.Cors.dll">
+      <publishTime>05/10/2018 22:39:40</publishTime>
+    </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>02/01/2018 13:17:40</publishTime>
+      <publishTime>05/10/2018 22:39:16</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
       <publishTime>02/01/2018 13:19:26</publishTime>
@@ -406,7 +412,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/16/2018 23:02:17</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/16/2018 23:28:11</publishTime>
+      <publishTime>09/18/2018 16:38:15</publishTime>
     </File>
   </ItemGroup>
 </Project>
