@@ -18,6 +18,8 @@ namespace GrowleriaPOS.Models
         public String CNPJ{ get; set; }
         [DataMember(Name="phoneNumber")]
         public String PhoneNumber{ get; set; }
+        [DataMember(Name="cashierReceiptDescription")]
+        public String CashierReceiptDescription { get; set; }
     
     }
 }

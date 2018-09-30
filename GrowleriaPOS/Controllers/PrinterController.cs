@@ -14,7 +14,7 @@ namespace GrowleriaPOS.Controllers
 
         public Exception Error { get; private set; }
 
-      
+
 
         public PrinterController()
         {
@@ -35,41 +35,46 @@ namespace GrowleriaPOS.Controllers
                 //<<<step3>>>--Start
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|1B\n\n");
                 //<<<step3>>>--End
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA\u001b|2C" + strDate + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA\u001b|2C" + strDate + "\n\n");
 
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "\u001b|uC"  +cashier.Store.Name + "\n\n" );
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Endereço " + cashier.Store.Address + "\n\n" );
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "CNPJ " + cashier.Store.CNPJ + "\n\n" );
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Emissor " + cashier.UserNameOpened + " | CPF " + cashier.UserOpened.CPF + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "\u001b|uC" + cashier.Store.Name + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Endereço " + cashier.Store.Address + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "CNPJ " + cashier.Store.CNPJ + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Emissor " + cashier.UserNameOpened + " | CPF " + cashier.UserOpened.CPF + "\n\n");
 
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "\u001b|uC" + "Caixa #" + cashier.CashierNumber + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "\u001b|uC" + "Caixa #" + cashier.CashierNumber + "\n\n");
 
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Abertura às " + cashier.CreatedAt + "\n\n" );
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Aberto Caixa Por " + cashier.UserNameOpened + "\n\n" );
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Fechamento às " + cashier.CloseDate + "\n\n" );
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Fechado Caixa Por " + cashier.UserNameClosed + "\n\n" );
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "                                            \n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Abertura às " + cashier.CreatedAt + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Aberto Caixa Por " + cashier.UserNameOpened + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Fechamento às " + cashier.CloseDate + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Fechado Caixa Por " + cashier.UserNameClosed + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "                                            \n\n");
 
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Registrado Cartão R$ " + cashier.TotalPaymentCard + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Registrado Dinheiro R$ " + cashier.TotalPaymentMoney + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Total R$ " + (cashier.TotalPayment) + "\n\n" );
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Dinheiro em Caixa R$ " + cashier.MoneyBalance+ "\n\n" );
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "                                            \n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Total R$ " + (cashier.TotalPayment) + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Dinheiro em Caixa R$ " + cashier.MoneyBalance + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "                                            \n\n");
 
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Comprovante Cartão R$ " + cashier.BalanceCard + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Retirado em Dinheiro R$ " + cashier.BalanceMoney+ "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Total R$ " + (cashier.TotalAccountBalance - cashier.MoneyBalance) + "\n\n" );
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "                                            \n\n" );
-                
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Diferença Dinheiro R$ " + cashier.MoneyDifference+ "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Diferença Cartão R$ " + (cashier.CardDifference) + "\n\n" );
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "                                            \n\n" );
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\n\n\n\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Retirado em Dinheiro R$ " + cashier.BalanceMoney + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Total R$ " + (cashier.TotalAccountBalance - cashier.MoneyBalance) + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "                                            \n\n");
+
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Diferença Dinheiro R$ " + cashier.MoneyDifference + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Diferença Cartão R$ " + (cashier.CardDifference) + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "                                            \n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\n\n\n\n\n");
 
 
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "Assinatura                                  \n\n" );
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + cashier.UserNameOpened + "\n\n" );
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "CPF " + cashier.UserOpened.CPF + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "Assinatura                                  \n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + cashier.UserNameOpened + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "CPF " + cashier.UserOpened.CPF + "\n\n");
+                if (!string.IsNullOrWhiteSpace(cashier.Store.CashierReceiptDescription))
+                {
+                    Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\n\n");
+                    Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + cashier.Store.CashierReceiptDescription + "\n\n");
+                }
 
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|fP");
                 this.Error = null;
