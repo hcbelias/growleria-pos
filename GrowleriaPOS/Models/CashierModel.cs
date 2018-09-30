@@ -30,26 +30,36 @@ namespace GrowleriaPOS.Models
         [DataMember(Name ="userNameOpened")]
         public String UserNameOpened { get; set;  }
         [DataMember(Name ="totalAccountBalance")]
-        public String TotalAccountBalance{ get; set;  }
+        public double TotalAccountBalance { get; set;  }
         [DataMember(Name ="moneyBalance")]
-        public String MoneyBalance{ get; set;  }
-        [DataMember(Name ="justifiyCard")]
+        public double MoneyBalance{ get; set;  }
+        [DataMember(Name ="justifyCard")]
         public String JustifyCard{ get; set;  }
         [DataMember(Name ="balanceCard")]
-        public String BalanceCard{ get; set;  }
+        public double BalanceCard { get; set;  }
         [DataMember(Name ="justifyMoney")]
         public String JustifyMoney { get; set;  }
         [DataMember(Name ="balanceMoney")]
-        public String BalanceMoney{ get; set;  }
+        public double BalanceMoney { get; set;  }
         [DataMember(Name ="cashierNumber")]
         public String CashierNumber{ get; set;  }
         [DataMember(Name ="positiveMoneyDifference")]
-        public String PositiveMoneyDifference{ get; set;  }
+        public double PositiveMoneyDifference { get; set;  }
         [DataMember(Name ="negativeMoneyDifference")]
-        public String NegativeMoneyDifference{ get; set;  }
+        public double NegativeMoneyDifference { get; set;  }
         [DataMember(Name ="positiveCardDifference")]
-        public String PositiveCardDifference{ get; set;  }
+        public double PositiveCardDifference { get; set;  }
         [DataMember(Name ="negativeCardDifference")]
-        public String NegativeCardDifference{ get; set;  }
+        public double NegativeCardDifference { get; set;  }
+        [DataMember(Name ="totalPaymentCard")]
+        public double TotalPaymentCard { get; internal set; }
+        [DataMember(Name ="totalPaymentMoney")]
+        public double TotalPaymentMoney { get; internal set; }
+        [DataMember(Name ="totalPayment")]
+        public double TotalPayment { get; internal set; }
+        [DataMember(Name ="moneyDifference")]
+        public double MoneyDifference { get; internal set; }
+        [DataMember(Name ="cardDifference")]
+        public double CardDifference { get; internal set; }
     }
 }
