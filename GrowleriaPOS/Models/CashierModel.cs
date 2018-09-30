@@ -31,8 +31,8 @@ namespace GrowleriaPOS.Models
         public String UserNameOpened { get; set;  }
         [DataMember(Name ="totalAccountBalance")]
         public String TotalAccountBalance{ get; set;  }
-        [DataMember(Name ="cashierAccountBalance")]
-        public String CashierAccountBalance{ get; set;  }
+        [DataMember(Name ="moneyBalance")]
+        public String MoneyBalance{ get; set;  }
         [DataMember(Name ="justifiyCard")]
         public String JustifyCard{ get; set;  }
         [DataMember(Name ="balanceCard")]

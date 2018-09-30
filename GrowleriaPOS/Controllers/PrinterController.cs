@@ -36,16 +36,16 @@ namespace GrowleriaPOS.Controllers
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|1B\n\n");
                 //<<<step3>>>--End
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA\u001b|2C" + strDate + "\n\n" );
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + cashier.Store.Name + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "\u001b|uC"  +cashier.Store.Name + "\n\n" );
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Endereço " + cashier.Store.Address + "\n\n" );
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "CNPJ " + cashier.Store.CNPJ + "\n\n" );
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Emissor " + cashier.UserNameOpened + " | CPF " + cashier.UserOpened.CPF + "\n\n" );
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|uC" + "Caixa #" + cashier.CashierNumber + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "\u001b|uC" + "Caixa #" + cashier.CashierNumber + "\n\n" );
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Abertura às " + cashier.CreatedAt + "\n\n" );
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Aberto Caixa Por " + cashier.UserNameOpened + "\n\n" );
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Fechamento às " + cashier.CloseDate + "\n\n" );
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Fechado Caixa Por" + cashier.UserNameClosed + "\n\n" );
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Saldo Inicial R$" + cashier.CashierAccountBalance + "\n\n" );
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Saldo Inicial R$" + cashier.MoneyBalance+ "\n\n" );
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Total em Caixa R$" + (cashier.TotalAccountBalance) + "\n\n" );
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "                                            \n\n" );
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + cashier.UserNameOpened + "\n\n" );
@@ -242,11 +242,11 @@ namespace GrowleriaPOS.Controllers
                     Printer.Release();
                     return true;
                 }
-                //catch (PosControlException err)
-                //{
-                //    this.Error = err;
-                //    return false;
-                //}
+                catch (PosControlException err)
+                {
+                    this.Error = err;
+                    return false;
+                }
                 finally
                 {
                     //Finish using the device.
