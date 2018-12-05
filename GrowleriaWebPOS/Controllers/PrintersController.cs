@@ -31,6 +31,7 @@ namespace GrowleriaWebPOS.Controllers
     public class PrintersController : ApiController
     {
         // GET api/values
+        [Route("api/printers/test")]
         public IHttpActionResult Get()
         {
             PrinterController controller = new PrinterController();
@@ -49,6 +50,7 @@ namespace GrowleriaWebPOS.Controllers
         }
 
         // POST api/values
+        [Route("api/printers/cashier")]
         public IHttpActionResult Post([FromBody]CashierModel value)
         {
             PrinterController controller = new PrinterController();
@@ -58,6 +60,25 @@ namespace GrowleriaWebPOS.Controllers
                 return Json<ResponseMessage>(new ResponseError("Erro ao conectar", controller.Error));
             }
             var print = controller.PrintEmployeeCashier(value);
+            var close = controller.CloseConnection();
+            if (!print)
+            {
+                return Json<ResponseMessage>(new ResponseError("Erro ao Imprimir", controller.Error));
+            }
+            return Json<ResponseMessage>(new ResponseMessage("Operação concluida"));
+        }
+
+        // POST api/values
+        [Route("api/printers/token")]
+        public IHttpActionResult PostToken([FromBody]TokenModel value)
+        {
+            PrinterController controller = new PrinterController();
+            var connect = controller.OpenConnection();
+            if (!connect)
+            {
+                return Json<ResponseMessage>(new ResponseError("Erro ao conectar", controller.Error));
+            }
+            var print = controller.PrintSalesTicket(value);
             var close = controller.CloseConnection();
             if (!print)
             {
