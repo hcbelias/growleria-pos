@@ -86,5 +86,31 @@ namespace GrowleriaWebPOS.Controllers
             }
             return Json<ResponseMessage>(new ResponseMessage("Operação concluida"));
         }
+
+        [Route("api/printers/token/many")]
+        public IHttpActionResult PostManyToken([FromBody]List<TokenModel> value)
+        {
+            PrinterController controller = new PrinterController();
+            var connect = controller.OpenConnection();
+            if (!connect)
+            {
+                return Json<ResponseMessage>(new ResponseError("Erro ao conectar", controller.Error));
+            }
+            var print = true;
+            value.ForEach(item =>
+            {
+                if (print)
+                {
+                    print = print && controller.PrintSalesTicket(item);
+                }
+            });
+
+            var close = controller.CloseConnection();
+            if (!print)
+            {
+                return Json<ResponseMessage>(new ResponseError("Erro ao Imprimir", controller.Error));
+            }
+            return Json<ResponseMessage>(new ResponseMessage("Operação concluida"));
+        }
     }
 }

@@ -161,18 +161,20 @@ namespace GrowleriaPOS.Controllers
             string strbcData = token.Id;
             try
             {
-            Printer.PrintNormal(PrinterStation.Receipt, "\u001b|1B");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|1B");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Loja " + token.StoreName + "\n\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C" + "\u001b|cA" + "Produto " + token.ProductName + "\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Fornecedor " + token.ProviderName + "\n\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C" + "\u001b|cA" + "Preço R$" + string.Format("{0:0.00}", token.Price)  + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C" + "\u001b|cA" + "Preço R$" + string.Format("{0:0.00}", token.Price) + "\n\n");
                 if (token.Volume.HasValue)
                 {
                     Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C" + "\u001b|cA" + token.Volume + "ml  \n");
                 }
                 CultureInfo MyCultureInfo = new CultureInfo("pt-BR");
 
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Gerado em " + DateTime.Parse(token.CreatedAt, MyCultureInfo)  + "\n");
+                DateTimeFormatInfo dateFormat = new DateTimeFormatInfo();   //Date Format
+                dateFormat.MonthDayPattern = "MMMM";
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Gerado em " + DateTime.Parse(token.CreatedAt, MyCultureInfo).ToString("dd/MM/yy", dateFormat) + "\n");
                 if (Printer.CapRecBarCode == true)
                 {
                     Printer.PrintNormal(PrinterStation.Receipt, "\n\u001b|cA" + strbcData);
