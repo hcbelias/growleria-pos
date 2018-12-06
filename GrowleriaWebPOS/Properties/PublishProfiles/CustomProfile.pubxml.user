@@ -85,19 +85,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/16/2018 23:02:37</publishTime>
     </File>
     <File Include="bin/ConsoleApp1.exe">
-      <publishTime>10/30/2018 18:32:22</publishTime>
+      <publishTime>12/04/2018 23:47:21</publishTime>
     </File>
     <File Include="bin/ConsoleApp1.exe.config">
       <publishTime>10/27/2018 16:25:00</publishTime>
     </File>
     <File Include="bin/ConsoleApp1.pdb">
-      <publishTime>10/30/2018 18:32:22</publishTime>
+      <publishTime>12/04/2018 23:47:21</publishTime>
     </File>
     <File Include="bin/GrowleriaWebPOS.dll">
-      <publishTime>10/30/2018 18:32:28</publishTime>
+      <publishTime>12/04/2018 23:47:32</publishTime>
     </File>
     <File Include="bin/GrowleriaWebPOS.pdb">
-      <publishTime>10/30/2018 18:32:28</publishTime>
+      <publishTime>12/04/2018 23:47:32</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>06/27/2017 12:59:34</publishTime>
@@ -412,7 +412,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/16/2018 23:02:17</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/30/2018 20:26:55</publishTime>
+      <publishTime>12/04/2018 23:47:33</publishTime>
     </File>
   </ItemGroup>
 </Project>
