@@ -40,14 +40,14 @@ namespace GrowleriaPOS.Controllers
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "\u001b|uC" + cashier.Store.Name + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Endereço " + cashier.Store.Address + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "CNPJ " + cashier.Store.CNPJ + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Emissor " + cashier.UserNameOpened + " | CPF " + cashier.UserOpened.CPF + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Emissor " + cashier.UserOpened.Nickname + " | CPF " + cashier.UserOpened.CPF + "\n\n");
 
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "\u001b|uC" + "Caixa #" + cashier.CashierNumber + "\n\n");
 
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Abertura às " + cashier.CreatedAt + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Aberto Caixa Por " + cashier.UserNameOpened + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Fechamento às " + cashier.CloseDate + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Fechado Caixa Por " + cashier.UserNameClosed + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Abertura às " + DateTime.Parse(cashier.CreatedAt).ToString("dd/MM/yy  HH:mm:ss", dateFormat) + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Aberto Caixa Por " + cashier.UserOpened.Nickname+ "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Fechamento às " + DateTime.Parse(cashier.CloseDate).ToString("dd/MM/yy  HH:mm:ss", dateFormat) + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Fechado Caixa Por " + cashier.UserClosed.Nickname + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "                                            \n\n");
 
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Registrado Cartão R$ " + cashier.TotalPaymentCard + "\n\n");
@@ -163,7 +163,7 @@ namespace GrowleriaPOS.Controllers
             {
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|1B");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + token.StoreName + "\n\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C" + "\u001b|cA" + "Produto " + token.ProductName + "\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C" + "\u001b|cA" + token.ProductName + "\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + token.ProviderName + "\n\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C" + "\u001b|cA" + "Preço R$" + string.Format("{0:0.00}", token.Price) + "\n");
                 if (token.Volume.HasValue)

@@ -12,6 +12,8 @@ namespace GrowleriaPOS.Models
     {
         [DataMember(Name="name")]
         public String Name { get; set; }
+        [DataMember(Name="nickname")]
+        public String Nickname { get; set; }
         [DataMember(Name="cpf")]
         public String CPF{ get; set; }
         [DataMember(Name="email")]
