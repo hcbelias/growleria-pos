@@ -61,5 +61,16 @@ namespace GrowleriaPOS.Models
         public double MoneyDifference { get; internal set; }
         [DataMember(Name ="cardDifference")]
         public double CardDifference { get; internal set; }
+        [DataMember(Name = "employeeCommission")] //recebimento por comissao
+        public double EmployeeComission{ get; internal set; }
+        [DataMember(Name = "employeePayment")] //recebimento por horas trabalhasdas
+        public double EmployeePayment{ get; internal set; }
+        [DataMember(Name = "employeeTotalPayment")] //recebimento total
+        public double EmployeeTotalPayment{ get; internal set; }
+        [DataMember(Name = "moneyOverWithdrawLimit")] //retirada para malote
+        public double MoneyOverWithdrawLimit { get; internal set; }
+        [DataMember(Name = "nextCashierBalance")] //SAldo para prox caixa
+        public double NextCashierBalance { get; internal set; }
     }
+
 }

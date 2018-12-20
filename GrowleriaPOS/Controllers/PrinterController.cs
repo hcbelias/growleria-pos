@@ -20,6 +20,10 @@ namespace GrowleriaPOS.Controllers
         {
         }
 
+        private Double Convert(double number)
+        {
+            return Math.Round(number, 2);
+        }
 
         public bool PrintEmployeeCashier(CashierModel cashier)
         {
@@ -48,23 +52,34 @@ namespace GrowleriaPOS.Controllers
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Aberto Caixa Por " + cashier.UserOpened.Nickname+ "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Fechamento às " + DateTime.Parse(cashier.CloseDate).ToString("dd/MM/yy  HH:mm:ss", dateFormat) + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Fechado Caixa Por " + cashier.UserClosed.Nickname + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "                                            \n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "\u001b|uC" +  "Sistema" + "\n\n");
 
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Caixa Inicial R$ " + cashier.MoneyBalance + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Registrado Cartão R$ " + cashier.TotalPaymentCard + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Registrado Dinheiro R$ " + cashier.TotalPaymentMoney + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Total R$ " + (cashier.TotalPayment) + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Dinheiro em Caixa R$ " + cashier.MoneyBalance + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "                                            \n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Total em Vendas R$ " + (cashier.TotalPayment) + "\n\n");
+                
+                Printer.PrintNormal(PrinterStation.Receipt, "\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "\u001b|uC" + "Físico" + "\n\n");
 
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Comprovante Cartão R$ " + cashier.BalanceCard + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Retirado em Dinheiro R$ " + cashier.BalanceMoney + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Total R$ " + (cashier.TotalAccountBalance - cashier.MoneyBalance) + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "                                            \n\n");
-
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Contado em Dinheiro R$ " + cashier.BalanceMoney + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Dinheiro em Caixa R$ " + Math.Round(cashier.TotalAccountBalance - cashier.MoneyBalance, 2) + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Diferença Dinheiro R$ " + cashier.MoneyDifference + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Diferença Cartão R$ " + (cashier.CardDifference) + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "                                            \n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\n\n\n\n\n");
+
+                Printer.PrintNormal(PrinterStation.Receipt, "\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "\u001b|uC" + "Recebimento" + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Recebimento por Comissão R$ " + Math.Round(cashier.EmployeeComission,2)+ "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Recebimento por Horas Trabalhadas R$ " + Math.Round(cashier.EmployeePayment, 2)+ "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Recebimento Total R$ " + Math.Round(cashier.EmployeeTotalPayment,2)+ "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Retirada para Malote R$ " + cashier.MoneyOverWithdrawLimit+ "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Saldo para Próximo Caixa R$ " + Math.Round(cashier.NextCashierBalance) + "\n\n");
+
+
+
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\n\n\n");
 
 
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "\u001b|cA" + "\u001b|uC" + "Assinatura                                  \n\n");
