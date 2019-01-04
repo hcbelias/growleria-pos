@@ -236,7 +236,11 @@ namespace GrowleriaPOS.Controllers
             catch (Exception err)
             {
                 this.Error = err;
-                this.Printer.Close();
+                if (this.Printer != null)
+                {
+                    this.Printer.Close();
+                }
+                
                 return false;
             }
         }
