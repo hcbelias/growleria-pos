@@ -33,5 +33,13 @@ namespace GrowleriaPOS.Models
         [DataMember(Name ="volume")]
         public Double? Volume{ get; set;  }
 
+        [DataMember(Name ="timePrinted")]
+        public String TimePrinted{ get; set;  }
+
+        [DataMember(Name ="timeSendToPrinter")]
+        public DateTime? TimeSendToPrinter{ get; set;  }
+
+        [DataMember(Name ="error")]
+        public Exception Error { get; set; }
     }
 }

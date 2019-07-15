@@ -78,13 +78,9 @@ namespace GrowleriaWebPOS.Controllers
             {
                 return Json<ResponseMessage>(new ResponseError("Erro ao conectar", controller.Error));
             }
-            var print = controller.PrintSalesTicket(value);
+            var token = controller.PrintSalesTicket(value);
             var close = controller.CloseConnection();
-            if (!print)
-            {
-                return Json<ResponseMessage>(new ResponseError("Erro ao Imprimir", controller.Error));
-            }
-            return Json<ResponseMessage>(new ResponseMessage("Operação concluida"));
+            return Json(new { data = token });
         }
 
         [Route("api/printers/token/many")]
@@ -96,21 +92,17 @@ namespace GrowleriaWebPOS.Controllers
             {
                 return Json<ResponseMessage>(new ResponseError("Erro ao conectar", controller.Error));
             }
-            var print = true;
+
+
             value.ForEach(item =>
             {
-                if (print)
-                {
-                    print = print && controller.PrintSalesTicket(item);
-                }
+                controller.PrintSalesTicket(item);
             });
 
             var close = controller.CloseConnection();
-            if (!print)
-            {
-                return Json<ResponseMessage>(new ResponseError("Erro ao Imprimir", controller.Error));
-            }
-            return Json<ResponseMessage>(new ResponseMessage("Operação concluida"));
+
+
+            return Json(new { data = value });
         }
     }
 }

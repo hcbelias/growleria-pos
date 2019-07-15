@@ -33,7 +33,6 @@ namespace GrowleriaPOS.Controllers
             DateTimeFormatInfo dateFormat = new DateTimeFormatInfo();   //Date Format
             dateFormat.MonthDayPattern = "MMMM";
             string strDate = nowDate.ToString("dd/MM/yy  HH:mm:ss", dateFormat);
-            string strbcData = "4902720005074";
 
             try
             {
@@ -59,16 +58,23 @@ namespace GrowleriaPOS.Controllers
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Caixa Inicial R$ " + cashier.MoneyBalance + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Registrado Cartão R$ " + cashier.TotalPaymentCard + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Registrado Dinheiro R$ " + cashier.TotalPaymentMoney + "\n\n");
+                if (cashier.TotalPaymentUber.HasValue)
+                {
+                    Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Registrado Uber$ " + cashier.TotalPaymentUber + "\n\n");
+                }
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Total em Vendas R$ " + (cashier.TotalPayment) + "\n\n");
 
                 Printer.PrintNormal(PrinterStation.Receipt, "\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "\u001b|uC" + "Físico" + "\n\n");
 
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Comprovante Cartão R$ " + cashier.BalanceCard + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Contado em Dinheiro R$ " + cashier.BalanceMoney + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Dinheiro em Caixa R$ " + Math.Round(cashier.TotalAccountBalance - cashier.MoneyBalance, 2) + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Dinheiro em Caixa R$ " + cashier.BalanceMoney + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Diferença Dinheiro R$ " + cashier.MoneyDifference + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Diferença Cartão R$ " + (cashier.CardDifference) + "\n\n");
+                if (cashier.UberDifference.HasValue)
+                {
+                    Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Diferença Uber R$ " + (cashier.UberDifference) + "\n\n");
+                }
 
                 Printer.PrintNormal(PrinterStation.Receipt, "\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "\u001b|uC" + "Recebimento" + "\n\n");
@@ -172,7 +178,7 @@ namespace GrowleriaPOS.Controllers
             //}
         }
 
-        public bool PrintSalesTicket(TokenModel token)
+        public TokenModel PrintSalesTicket(TokenModel token)
         {
             string strbcData = token.Id;
             try
@@ -196,15 +202,17 @@ namespace GrowleriaPOS.Controllers
                     200, PosPrinter.PrinterBarCodeCenter,
                     BarCodeTextPosition.Above);
                 Printer.PrintNormal(PrinterStation.Receipt, "\n\u001b|cA" + strbcData + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Gerado em " + DateTime.Parse(token.CreatedAt, MyCultureInfo).ToString("dd/MM/yy", dateFormat) + "\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Gerado em " + DateTime.Parse(token.CreatedAt, MyCultureInfo).ToString("dd/MM/yy hh:mm:ss", dateFormat) + "\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|fP");
-                this.Error = null;
-                return true;
+                var now = DateTime.UtcNow;
+                token.TimePrinted = now.ToString("s") + "." + now.Millisecond + "Z";
+                return token;
             }
             catch (PosControlException err)
             {
-                this.Error = err;
-                return false;
+                token.TimePrinted = null;
+                token.Error = err;
+                return token;
             }
         }
         public bool OpenConnection()

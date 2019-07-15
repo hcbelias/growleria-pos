@@ -33,14 +33,12 @@ namespace GrowleriaPOS.Models
         public double TotalAccountBalance { get; set;  }
         [DataMember(Name ="moneyBalance")]
         public double MoneyBalance{ get; set;  }
-        [DataMember(Name ="justifyCard")]
-        public String JustifyCard{ get; set;  }
         [DataMember(Name ="balanceCard")]
         public double BalanceCard { get; set;  }
-        [DataMember(Name ="justifyMoney")]
-        public String JustifyMoney { get; set;  }
         [DataMember(Name ="balanceMoney")]
         public double BalanceMoney { get; set;  }
+        [DataMember(Name ="balanceUber")]
+        public double BalancUber { get; set;  }
         [DataMember(Name ="cashierNumber")]
         public String CashierNumber{ get; set;  }
         [DataMember(Name ="positiveMoneyDifference")]
@@ -51,14 +49,22 @@ namespace GrowleriaPOS.Models
         public double PositiveCardDifference { get; set;  }
         [DataMember(Name ="negativeCardDifference")]
         public double NegativeCardDifference { get; set;  }
+        [DataMember(Name ="positiveUberDifference")]
+        public double? PositiveUberDifference { get; set;  }
+        [DataMember(Name ="negativeUberDifference")]
+        public double? NegativeUberDifference { get; set;  }
         [DataMember(Name ="totalPaymentCard")]
         public double TotalPaymentCard { get; internal set; }
+        [DataMember(Name ="totalPaymentUber")]
+        public double? TotalPaymentUber { get; internal set; }
         [DataMember(Name ="totalPaymentMoney")]
         public double TotalPaymentMoney { get; internal set; }
         [DataMember(Name ="totalPayment")]
         public double TotalPayment { get; internal set; }
         [DataMember(Name ="moneyDifference")]
         public double MoneyDifference { get; internal set; }
+        [DataMember(Name ="uberDifference")]
+        public double? UberDifference { get; internal set; }
         [DataMember(Name ="cardDifference")]
         public double CardDifference { get; internal set; }
         [DataMember(Name = "employeeCommission")] //recebimento por comissao
