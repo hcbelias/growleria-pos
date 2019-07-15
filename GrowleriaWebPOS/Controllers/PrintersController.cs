@@ -49,6 +49,12 @@ namespace GrowleriaWebPOS.Controllers
             return Json<ResponseMessage>(new ResponseMessage("Operação concluida"));
         }
 
+        [Route("api/version")]
+        public IHttpActionResult GetVersion()
+        {
+           return Json<ResponseMessage>(new Controllers.ResponseMessage("v2.0.0"));
+        }
+
         // POST api/values
         [Route("api/printers/cashier")]
         public IHttpActionResult Post([FromBody]CashierModel value)
