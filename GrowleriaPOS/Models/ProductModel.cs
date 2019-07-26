@@ -13,8 +13,8 @@ namespace GrowleriaPOS.Models
         [DataMember(Name = "productName")]
         public String ProductName { get; set; }
 
-        [DataMember(Name = "providerName")]
-        public String ProviderName { get; set; }
+        [DataMember(Name = "provider")]
+        public String Provider { get; set; }
 
         [DataMember(Name = "totalUnits")]
         public double? TotalUnits { get; set; }
@@ -27,7 +27,7 @@ namespace GrowleriaPOS.Models
               
    
         [DataMember(Name = "totalSale")]
-        public String TotalSale { get; set; }
+        public long TotalSale { get; set; }
 
     }
 }

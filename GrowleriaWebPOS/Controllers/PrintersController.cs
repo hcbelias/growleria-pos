@@ -98,9 +98,10 @@ namespace GrowleriaWebPOS.Controllers
             {
                 return Json<ResponseMessage>(new ResponseError("Erro ao conectar", controller.Error));
             }
-            var token = controller.PrintSalesDetails(value);
+            var printClient = controller.PrintSalesDetails(value, "Cliente");
+            var printUser = controller.PrintSalesDetails(value, "Vendedor");
             var close = controller.CloseConnection();
-            return Json(new { data = token });
+            return Json(new { printClient, printUser });
         }
 
         [Route("api/printers/token/many")]

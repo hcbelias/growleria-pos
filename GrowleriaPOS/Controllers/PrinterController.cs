@@ -15,6 +15,10 @@ namespace GrowleriaPOS.Controllers
 
         public Exception Error { get; private set; }
 
+        CultureInfo MyCultureInfo = new CultureInfo("pt-BR");
+
+        DateTimeFormatInfo dateFormat = new DateTimeFormatInfo() { MonthDayPattern = "MMMM" };   //Date Format
+
 
 
         public PrinterController()
@@ -177,40 +181,67 @@ namespace GrowleriaPOS.Controllers
             //    return false;
             //}
         }
-        public TokenModel PrintSalesDetails(SaleModel token)
+
+        private String formatPrice(long price)
         {
-            string strbcData = token.Id;
+            return string.Format("{0:0.00}", price);
+
+        }
+        public bool PrintSalesDetails(SaleModel sale, String receipt)
+        {
+            string strbcData = sale.Id;
             try
             {
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|1B");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + token.StoreName + "\n\n\n");
-//                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C" + "\u001b|cA" + token.ProductName + "\n");
- //               Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + token.ProviderName + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Garantido o valor por 30 dias" + "\n");
-   //             Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C" + "\u001b|cA" + "Preço R$" + string.Format("{0:0.00}", token.Price) + "\n");
- //               if (token.Volume.HasValue)
-       //         {
-     //               Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C" + "\u001b|cA" + token.Volume + "ml  \n");
-         //       }
-                CultureInfo MyCultureInfo = new CultureInfo("pt-BR");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Via do " + receipt + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + sale.StoreName + "\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "Venda: " + sale.Id + "\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "Hora da Venda: " + DateTime.Parse(sale.CreatedAt, this.MyCultureInfo).ToString("dd/MM/yy HH:mm:ss", this.dateFormat) + "\n\n");
 
-                DateTimeFormatInfo dateFormat = new DateTimeFormatInfo();   //Date Format
-                dateFormat.MonthDayPattern = "MMMM";
-                Printer.PrintBarCode(PrinterStation.Receipt, strbcData,
-                    BarCodeSymbology.QRCode, 80,
-                    200, PosPrinter.PrinterBarCodeCenter,
-                    BarCodeTextPosition.Above);
-                Printer.PrintNormal(PrinterStation.Receipt, "\n\u001b|cA" + strbcData + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Gerado em " + DateTime.Parse(token.CreatedAt, MyCultureInfo).ToString("dd/MM/yy hh:mm:ss", dateFormat) + "\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C" + "Produtos" + "\n");
+                sale.ProductList.ForEach(item =>
+                {
+                    PrintProductDetail(item);
+                });
+
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C" + "Total        R$" + formatPrice(sale.Total) + "\u001b|N\n\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C" + "Pagamento" + "\n");
+                if (sale.PaymentMoney != 0) { 
+                    Printer.PrintNormal(PrinterStation.Receipt, "Dinheiro     R$" + formatPrice(sale.PaymentMoney) + "\n");
+                     }
+                if (sale.PaymentCard != 0)
+                {
+                    Printer.PrintNormal(PrinterStation.Receipt, "Cartão       R$" + formatPrice(sale.PaymentCard) + "\n");
+                }
+                if (sale.PaymentUber != 0)
+                {
+                    Printer.PrintNormal(PrinterStation.Receipt, "Uber         R$" + formatPrice(sale.PaymentUber) + "\n");
+                    Printer.PrintNormal(PrinterStation.Receipt, "Usuário Uber:  " + sale.UberUser + "\n");
+                    Printer.PrintNormal(PrinterStation.Receipt, "Código Uber: " + sale.UberCode + "\n");
+                }
+                if (sale.PaymentToken != 0)
+                {
+                    Printer.PrintNormal(PrinterStation.Receipt, "Fichas       R$" + formatPrice(sale.PaymentToken) + "\u001b|N\n");
+                }
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C" + "Total Pago   R$" + formatPrice((sale.PaymentMoney + sale.PaymentCard + sale.PaymentUber + sale.PaymentToken)) + "\u001b|N\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|fP");
-                var now = DateTime.UtcNow;
-         //       token.TimePrinted = now.ToString("s") + "." + now.Millisecond + "Z";
-                return null;
+
+
+                return true;
             }
             catch (PosControlException err)
             {
-                return null;
+                return false;
             }
+        }
+
+        private void PrintProductDetail(ProductModel productModel)
+        {
+
+
+            var textPrint = productModel.IsKeg ? productModel.TotalVolume + "L  " : productModel.TotalUnits + "un.";
+            Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + productModel.ProductName + "\n");
+            Printer.PrintNormal(PrinterStation.Receipt, textPrint + "   -  R$" + formatPrice(productModel.TotalSale) + "\n");
         }
 
         public TokenModel PrintSalesToken(TokenModel token)
@@ -227,16 +258,12 @@ namespace GrowleriaPOS.Controllers
                 {
                     Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C" + "\u001b|cA" + token.Volume + "ml  \n");
                 }
-                CultureInfo MyCultureInfo = new CultureInfo("pt-BR");
-
-                DateTimeFormatInfo dateFormat = new DateTimeFormatInfo();   //Date Format
-                dateFormat.MonthDayPattern = "MMMM";
                 Printer.PrintBarCode(PrinterStation.Receipt, strbcData,
-                    BarCodeSymbology.QRCode, 80,
-                    200, PosPrinter.PrinterBarCodeCenter,
-                    BarCodeTextPosition.Above);
+                        BarCodeSymbology.QRCode, 80,
+                        200, PosPrinter.PrinterBarCodeCenter,
+                        BarCodeTextPosition.Above);
                 Printer.PrintNormal(PrinterStation.Receipt, "\n\u001b|cA" + strbcData + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Gerado em " + DateTime.Parse(token.CreatedAt, MyCultureInfo).ToString("dd/MM/yy hh:mm:ss", dateFormat) + "\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Gerado em " + DateTime.Parse(token.CreatedAt, this.MyCultureInfo).ToString("dd/MM/yy HH:mm:ss", this.dateFormat) + "\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Garantido o valor por 30 dias" + "\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|fP");
                 var now = DateTime.UtcNow;
@@ -283,7 +310,7 @@ namespace GrowleriaPOS.Controllers
                 {
                     this.Printer.Close();
                 }
-                
+
                 return false;
             }
         }

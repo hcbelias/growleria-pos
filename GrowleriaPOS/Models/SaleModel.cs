@@ -69,7 +69,7 @@ namespace GrowleriaPOS.Models
         [DataMember(Name = "total")]
         public long Total { get; set; }
 
-        [DataMember(Name = "productList")]
+        [DataMember(Name = "product")]
         public List<ProductModel> ProductList
         {
             get; set;
