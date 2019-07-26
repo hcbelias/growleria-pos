@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\PrinterController.cs" />
+    <Compile Include="Models\ProductModel.cs" />
+    <Compile Include="Models\SaleModel.cs" />
     <Compile Include="Models\TokenModel.cs" />
     <Compile Include="Models\CashierModel.cs" />
     <Compile Include="Models\UserModel.cs" />

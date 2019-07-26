@@ -84,7 +84,21 @@ namespace GrowleriaWebPOS.Controllers
             {
                 return Json<ResponseMessage>(new ResponseError("Erro ao conectar", controller.Error));
             }
-            var token = controller.PrintSalesTicket(value);
+            var token = controller.PrintSalesToken(value);
+            var close = controller.CloseConnection();
+            return Json(new { data = token });
+        }
+
+        [Route("api/printers/sale")]
+        public IHttpActionResult PostSale([FromBody]SaleModel value)
+        {
+            PrinterController controller = new PrinterController();
+            var connect = controller.OpenConnection();
+            if (!connect)
+            {
+                return Json<ResponseMessage>(new ResponseError("Erro ao conectar", controller.Error));
+            }
+            var token = controller.PrintSalesDetails(value);
             var close = controller.CloseConnection();
             return Json(new { data = token });
         }
@@ -102,7 +116,7 @@ namespace GrowleriaWebPOS.Controllers
 
             value.ForEach(item =>
             {
-                controller.PrintSalesTicket(item);
+                controller.PrintSalesToken(item);
             });
 
             var close = controller.CloseConnection();
