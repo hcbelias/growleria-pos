@@ -223,7 +223,7 @@ namespace GrowleriaPOS.Controllers
                 {
                     Printer.PrintNormal(PrinterStation.Receipt, "Fichas       R$" + formatPrice(sale.PaymentToken) + "\u001b|N\n");
                 }
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C" + "Total Pago   R$" + formatPrice((sale.PaymentMoney + sale.PaymentCard + sale.PaymentUber + sale.PaymentToken)) + "\u001b|N\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|2C" + "Total Pago   R$" + formatPrice((sale.PaymentMoney + sale.PaymentCard + sale.PaymentUber + sale.PaymentToken)) + "\u001b|N\n\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|fP");
 
 
