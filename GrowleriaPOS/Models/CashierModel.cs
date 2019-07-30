@@ -77,6 +77,8 @@ namespace GrowleriaPOS.Models
         public double MoneyOverWithdrawLimit { get; internal set; }
         [DataMember(Name = "nextCashierBalance")] //SAldo para prox caixa
         public double NextCashierBalance { get; internal set; }
+        [DataMember(Name = "cashierBalanceIncrement")] 
+        public double? CashierBalanceIncrement{ get; internal set; }
     }
 
 }
