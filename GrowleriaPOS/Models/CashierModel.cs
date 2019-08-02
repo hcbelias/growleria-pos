@@ -33,6 +33,10 @@ namespace GrowleriaPOS.Models
         public double TotalAccountBalance { get; set;  }
         [DataMember(Name ="moneyBalance")]
         public double MoneyBalance{ get; set;  }
+        [DataMember(Name ="calculatedMoneyBalance")]
+        public double CalculatedMoneyBalance{ get; set;  }
+        [DataMember(Name ="moneyBalanceDifference")]
+        public double MoneyBalanceDifference{ get; set;  }
         [DataMember(Name ="balanceCard")]
         public double BalanceCard { get; set;  }
         [DataMember(Name ="balanceMoney")]
