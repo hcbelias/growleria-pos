@@ -85,19 +85,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/11/2019 22:57:14</publishTime>
     </File>
     <File Include="bin/ConsoleApp1.exe">
-      <publishTime>07/30/2019 18:38:32</publishTime>
+      <publishTime>08/02/2019 13:42:39</publishTime>
     </File>
     <File Include="bin/ConsoleApp1.exe.config">
       <publishTime>07/11/2019 22:57:14</publishTime>
     </File>
     <File Include="bin/ConsoleApp1.pdb">
-      <publishTime>07/30/2019 18:38:32</publishTime>
+      <publishTime>08/02/2019 13:42:39</publishTime>
     </File>
     <File Include="bin/GrowleriaWebPOS.dll">
-      <publishTime>07/30/2019 18:38:38</publishTime>
+      <publishTime>08/02/2019 13:42:45</publishTime>
     </File>
     <File Include="bin/GrowleriaWebPOS.pdb">
-      <publishTime>07/30/2019 18:38:38</publishTime>
+      <publishTime>08/02/2019 13:42:45</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>06/27/2017 12:59:34</publishTime>
