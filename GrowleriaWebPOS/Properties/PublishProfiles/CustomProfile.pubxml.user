@@ -84,20 +84,26 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/ApplicationInsights.config">
       <publishTime>07/11/2019 22:57:14</publishTime>
     </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>12/14/2019 13:40:47</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>12/14/2019 13:40:47</publishTime>
+    </File>
     <File Include="bin/ConsoleApp1.exe">
-      <publishTime>08/02/2019 13:42:39</publishTime>
+      <publishTime>12/14/2019 13:37:32</publishTime>
     </File>
     <File Include="bin/ConsoleApp1.exe.config">
       <publishTime>07/11/2019 22:57:14</publishTime>
     </File>
     <File Include="bin/ConsoleApp1.pdb">
-      <publishTime>08/02/2019 13:42:39</publishTime>
+      <publishTime>12/14/2019 13:37:32</publishTime>
     </File>
     <File Include="bin/GrowleriaWebPOS.dll">
-      <publishTime>08/02/2019 13:42:45</publishTime>
+      <publishTime>12/14/2019 13:40:39</publishTime>
     </File>
     <File Include="bin/GrowleriaWebPOS.pdb">
-      <publishTime>08/02/2019 13:42:45</publishTime>
+      <publishTime>12/14/2019 13:40:39</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>06/27/2017 12:59:34</publishTime>
@@ -369,6 +375,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Global.asax">
       <publishTime>07/11/2019 22:57:15</publishTime>
     </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>12/14/2019 13:40:40</publishTime>
+    </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>07/11/2019 22:57:15</publishTime>
     </File>
@@ -412,7 +421,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/11/2019 22:57:15</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/15/2019 20:44:15</publishTime>
+      <publishTime>12/14/2019 13:37:42</publishTime>
     </File>
   </ItemGroup>
 </Project>

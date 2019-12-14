@@ -20,6 +20,8 @@ namespace GrowleriaPOS.Models
         public String Email{ get; set; }
         [DataMember(Name="hourlyRate")]
         public String HourlyRate{ get; set; }
+        [DataMember(Name="role")]
+        public String Role { get; set; }
     
     }
 }

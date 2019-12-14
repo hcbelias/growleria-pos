@@ -46,7 +46,7 @@ namespace GrowleriaPOS.Controllers
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "\u001b|uC" + cashier.Store.Name + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + cashier.Store.Address + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "CNPJ " + cashier.Store.CNPJ + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Emissor " + cashier.UserOpened.Nickname + " | CPF " + cashier.UserOpened.CPF + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Emissor " + cashier.UserOpened.Nickname + " | CPF " + cashier.UserOpened.CPF + "\n");
 
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "\u001b|uC" + "Caixa #" + cashier.CashierNumber + "\n\n");
 
@@ -56,19 +56,19 @@ namespace GrowleriaPOS.Controllers
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Fechado Por " + cashier.UserClosed.Nickname + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "\u001b|uC" + "Físico" + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Caixa Inicial R$ " + cashier.MoneyBalance + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Caixa Inicial - R$ " + cashier.MoneyBalance + "\n\n");
                 if (cashier.MoneyBalanceDifference > 0 || cashier.MoneyBalanceDifference < 0)
                 {
                     Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "********************************" + "\n\n");
-                    Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "Caixa Inicial Calculado R$ " + cashier.CalculatedMoneyBalance + "\n\n");
-                    Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "Differença R$ " + cashier.MoneyBalanceDifference + "\n\n");
+                    Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "Caixa Inicial Calculado - R$ " + cashier.CalculatedMoneyBalance + "\n\n");
+                    Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "Differença - R$ " + cashier.MoneyBalanceDifference + "\n\n");
                     Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "********************************" + "\n\n");
                 }
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Complemento de Crédito R$ " + (cashier.CashierDepositTotal) + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Comprovante Cartão R$ " + cashier.BalanceCard + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Dinheiro em Caixa R$ " + cashier.BalanceMoney + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Diferença Dinheiro R$ " + cashier.MoneyDifference + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Diferença Cartão R$ " + (cashier.CardDifference) + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Complemento de Caixa - R$ " + (cashier.CashierDepositTotal) + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Comprovante Cartão - R$ " + cashier.BalanceCard + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Dinheiro em Caixa - R$ " + cashier.BalanceMoney + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Diferença Dinheiro - R$ " + cashier.MoneyDifference + "\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Diferença Cartão - R$ " + (cashier.CardDifference) + "\n\n");
                 if (cashier.UberDifference.HasValue)
                 {
                     Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Diferença Uber R$ " + (cashier.UberDifference) + "\n\n");
@@ -76,12 +76,44 @@ namespace GrowleriaPOS.Controllers
 
                 Printer.PrintNormal(PrinterStation.Receipt, "\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "\u001b|uC" + "Recebimento" + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Adiantamento de Comissão R$ " + Math.Round(cashier.EmployeeComission, 2) + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Adiantamento de Horas Trabalhadas (" + cashier.StandardHoursDate + " R$ " + Math.Round(cashier.PaymentStandardHours, 2) + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Adiantamento de Horas Adicionais Trabalhadas (" + cashier.AdditionalHoursDate + " R$ " + Math.Round(cashier.PaymentAdditionalHours, 2) + "\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Adiantamento de Vale Transporte R$ " + Math.Round(cashier.BusTicketValue, 2) + "\n\n");
+                if (cashier.BusTicketValue != 0)
+                {
+                    Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Valor do Vale Transporte - R$ " + Math.Round(cashier.BusTicketValue, 2) + "\n\n");
+                }
 
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Adiantamento Total R$ " + Math.Round(cashier.EmployeeTotalPayment, 2) + "\n\n");
+                String userRole = string.IsNullOrWhiteSpace(cashier.UserRoleOpened) ? cashier.UserOpened.Role : cashier.UserRoleOpened;
+                Boolean showSalaryValues = true;
+                switch (userRole)
+                {
+                    case "employee":
+                    case "manager":
+                        showSalaryValues = false;
+                        break;
+                    default: break;
+                }
+
+                String workedHoursLine = "Horas Trabalhadas (" + cashier.StandardHoursDate + ")";
+                String workedAdditionalHoursLine = "Horas Adicionais Trabalhadas (" + cashier.AdditionalHoursDate + ")";
+                if (showSalaryValues)
+                {
+                    workedHoursLine += " - R$ " + Math.Round(cashier.PaymentStandardHours, 2);
+                    workedAdditionalHoursLine += " - R$ " + Math.Round(cashier.PaymentAdditionalHours, 2);
+                }
+
+                if (Math.Abs(cashier.PaymentStandardHours) >= 0.01 || !showSalaryValues)
+                {
+                    Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + workedHoursLine + "\n\n");
+                }
+
+                if (Math.Abs(cashier.PaymentAdditionalHours) >= 0.01 || !showSalaryValues)
+                {
+                    Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + workedAdditionalHoursLine + "\n\n");
+                }
+
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Comissão R$ " + Math.Round(cashier.EmployeeComission, 2) + "\n\n");
+                
+
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Recebimento Total R$ " + Math.Round(cashier.EmployeeTotalPayment, 2) + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Retirada para Malote R$ " + cashier.MoneyOverWithdrawLimit + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Saldo para Próximo Caixa R$ " + Math.Round(cashier.NextCashierBalance) + "\n\n");
 

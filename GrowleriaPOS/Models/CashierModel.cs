@@ -29,6 +29,8 @@ namespace GrowleriaPOS.Models
         public String UserEmailOpened { get; set; }
         [DataMember(Name = "userNameOpened")]
         public String UserNameOpened { get; set; }
+        [DataMember(Name = "userRoleOpened")]
+        public String UserRoleOpened { get; set; }
         [DataMember(Name = "totalAccountBalance")]
         public double TotalAccountBalance { get; set; }
         [DataMember(Name = "moneyBalance")]
