@@ -77,6 +77,8 @@ namespace GrowleriaPOS.Models
         public double EmployeeComission { get; internal set; }
         [DataMember(Name = "employeePayment")] //recebimento por horas trabalhasdas
         public double EmployeePayment { get; internal set; }
+        [DataMember(Name = "employeeTotalPaymentAtMoment")] //recebimento total
+        public double EmployeeTotalPaymentAtMoment { get; internal set; }
         [DataMember(Name = "employeeTotalPayment")] //recebimento total
         public double EmployeeTotalPayment { get; internal set; }
         [DataMember(Name = "moneyOverWithdrawLimit")] //retirada para malote
