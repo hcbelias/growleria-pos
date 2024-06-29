@@ -67,3 +67,5 @@ project.assets.json
 obj
 bin
 /packages
+
+.vs/GrowleriaPOS/DesignTimeBuild/.dtbcache.v2

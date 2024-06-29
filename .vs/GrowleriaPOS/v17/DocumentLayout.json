@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7DE0415A-5492-47A9-91D9-B89DF48E2E8D}|GrowleriaWebPOS\\GrowleriaWebPOS.csproj|c:\\users\\henrique elias\\git\\growleria-pos\\growleriawebpos\\controllers\\printerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7DE0415A-5492-47A9-91D9-B89DF48E2E8D}|GrowleriaWebPOS\\GrowleriaWebPOS.csproj|solutionrelative:growleriawebpos\\controllers\\printerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5885377F-2045-4E16-A4AA-189CF91209B4}|GrowleriaPOS\\GrowleriaPOS.csproj|c:\\users\\henrique elias\\git\\growleria-pos\\growleriapos\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5885377F-2045-4E16-A4AA-189CF91209B4}|GrowleriaPOS\\GrowleriaPOS.csproj|solutionrelative:growleriapos\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PrintersController.cs",
+              "DocumentMoniker": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaWebPOS\\Controllers\\PrintersController.cs",
+              "RelativeDocumentMoniker": "GrowleriaWebPOS\\Controllers\\PrintersController.cs",
+              "ToolTip": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaWebPOS\\Controllers\\PrintersController.cs",
+              "RelativeToolTip": "GrowleriaWebPOS\\Controllers\\PrintersController.cs",
+              "ViewState": "AQIAAFkAAAAAAAAAAAAUwGkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-29T01:08:22.818Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaPOS\\Program.cs",
+              "RelativeDocumentMoniker": "GrowleriaPOS\\Program.cs",
+              "ToolTip": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaPOS\\Program.cs",
+              "RelativeToolTip": "GrowleriaPOS\\Program.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABAAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-26T02:40:26.736Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
