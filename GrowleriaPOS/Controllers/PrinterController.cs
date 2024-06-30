@@ -115,7 +115,7 @@ namespace GrowleriaPOS.Controllers
                 }
 
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Comissão R$ " + Math.Round(cashier.EmployeeComission, 2) + "\n\n");
-                
+
 
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Recebimento Total R$ " + Math.Round(cashier.EmployeeTotalPaymentAtMoment, 2) + "\n\n");
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|N" + "Retirada para Malote R$ " + cashier.MoneyOverWithdrawLimit + "\n\n");
@@ -146,6 +146,29 @@ namespace GrowleriaPOS.Controllers
             }
         }
 
+        public bool PrintNFCeReceipt(NFCeModel nfce)
+        {
+            try
+            {
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|1B");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Nota Fiscal - NFC-e" + "\n\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Growleria - Chopp no Litro" + "\n\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "CNPJ: " + nfce.CnpjStore + "\n\n\n");
+                /*Printer.PrintBarCode(PrinterStation.Receipt, nfce.ToString,
+                        BarCodeSymbology.QRCode, 80,
+                        200, PosPrinter.PrinterBarCodeCenter,
+                        BarCodeTextPosition.Above);*/
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|fP");
+
+                return true;
+            }
+            catch (PosControlException err)
+            {
+                ;
+                return false;
+            }
+
+        }
         public bool PrintTest()
         {
             //Initialization
