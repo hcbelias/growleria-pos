@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 
 namespace GrowleriaPOS.Controllers
 {
@@ -146,18 +147,68 @@ namespace GrowleriaPOS.Controllers
             }
         }
 
+        static string FormatStringWithSpacesEveryFourChars(string input)
+        {
+            return string.Join(" ", Enumerable.Range(0, (input.Length + 3) / 4)
+                                              .Select(i => input.Substring(i * 4, Math.Min(4, input.Length - i * 4))));
+        }
+
         public bool PrintNFCeReceipt(NFCeModel nfce)
         {
+            String urlSefaz = "https://hportalsped.fazenda.mg.gov.br/portalnfce/sistema/consultaarg.xhtml";
             try
             {
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|1B");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Nota Fiscal - NFC-e" + "\n\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Growleria - Chopp no Litro" + "\n\n\n");
-                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "CNPJ: " + nfce.CnpjStore + "\n\n\n");
-                /*Printer.PrintBarCode(PrinterStation.Receipt, nfce.ToString,
+
+                // Header
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Nota Fiscal - NFC-e" + "\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "Growleria - Chopp no Litro" + "\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "CNPJ - " + nfce.CnpjStore + "\n\n");
+
+                // Itens
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + "\u001b|uC" + "Itens" + "\n");
+                // Line
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|uC"
+                    + "                                            \n" + "\u001b|N\n");
+                //Item list
+                nfce.Items.ForEach(item =>
+                {
+                    Printer.PrintNormal(PrinterStation.Receipt, "\u001b|lA" + item.Description + "\n");
+                    Printer.PrintNormal(PrinterStation.Receipt, "R$" + item.CommercialValue + "\n");
+                });
+                // Line
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|uC"
+                    + "                                            " + "\u001b|N\n");
+
+                // Itens
+                Printer.PrintNormal(PrinterStation.Receipt, "\n\n\u001b|bC" + "\u001b|cA" + "\u001b|uC" + "Forma de Pagamento" + "\n");
+                // Line
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|uC"
+                    + "                                            \n" + "\u001b|N\n");
+                nfce.Payments.ForEach(item =>
+                {
+                    Printer.PrintNormal(PrinterStation.Receipt, "\u001b|lA" + item.PaymentDescription + " - R$" + item.Value + "\n");
+                });
+                // Line
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|uC"
+                    + "                                            " + "\u001b|N\n");
+
+                // Chave de acesso
+                Printer.PrintNormal(PrinterStation.Receipt, "\n\n\u001b|bC" + "\u001b|cA" + "\u001b|uC" + "Chave de Acesso" + "\n");
+                // Line
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|uC"
+                    + "                                           " + "\u001b|N\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, FormatStringWithSpacesEveryFourChars(nfce.Token)+ "\u001b|2C" + "\n");
+                // Line
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|uC"
+                    + "                                           " + "\u001b|N\n\n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|cA" + "Você pode obter mais detalhes em \n");
+                Printer.PrintNormal(PrinterStation.Receipt, "\u001b|bC" + "\u001b|cA" + urlSefaz + "\n\n\n");
+
+                Printer.PrintBarCode(PrinterStation.Receipt, urlSefaz,
                         BarCodeSymbology.QRCode, 80,
                         200, PosPrinter.PrinterBarCodeCenter,
-                        BarCodeTextPosition.Above);*/
+                        BarCodeTextPosition.Above);
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|fP");
 
                 return true;

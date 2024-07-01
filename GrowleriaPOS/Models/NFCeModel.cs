@@ -39,5 +39,8 @@ namespace GrowleriaPOS.Models
         [DataMember(Name = "cStat")]
         public string CStat { get; set; }
 
+        [DataMember(Name = "token")]
+        public string Token { get; set; }
+
     }
 }

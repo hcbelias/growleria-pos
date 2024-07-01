@@ -128,10 +128,8 @@ namespace GrowleriaWebPOS.Controllers
         }
 
         [Route("api/printers/nfce")]
-        //public IHttpActionResult PostNFCe([FromBody] NFCeModel value)
-        public IHttpActionResult GetNFCe()
+        public IHttpActionResult PostNFCe([FromBody] NFCeModel nfce)
         {
-            var nfce = JsonConvert.DeserializeObject<NFCeModel>("{\"nfce\":{\"id\":\"6681c3d1907dc26c8f6a35ac\",\"payments\":[{\"value\":10,\"paymentMethod\":\"04\",\"description\":\"6681c3d1907dc26c8f6a34e2\",\"_id\":\"6681c3d1907dc26c8f6a35ad\",\"createdAt\":\"2024-06-30T20:45:05.547Z\",\"updatedAt\":\"2024-06-30T20:45:05.547Z\",\"id\":\"6681c3d1907dc26c8f6a35ad\",\"paymentDescription\":\"Cartão de Débito\"}],\"itens\":[{\"product\":\"5a38476db2d1c30014d76f25\",\"description\":\"AUSTRIA PILSEN - Half Pint - 300ml\",\"ncm\":\"22030000\",\"cfop\":\"5405\",\"cest\":\"0202000\",\"commercialValue\":10,\"taxValue\":10,\"_id\":\"6681c3d1907dc26c8f6a35ae\",\"createdAt\":\"2024-06-30T20:45:05.547Z\",\"updatedAt\":\"2024-06-30T20:45:05.547Z\",\"id\":\"6681c3d1907dc26c8f6a35ae\"}],\"cnpjStore\":\"26732707000186\",\"sale\":\"6681c3d1907dc26c8f6a34e2\",\"cashier\":\"6664d919750e9adf9e6c69f2\",\"status\":\"approved\",\"printNfce\":true,\"createdAt\":\"2024-06-30T20:45:05.547Z\",\"updatedAt\":\"2024-06-30T20:45:11.963Z\",\"_v\":0,\"externalId\":\"6681c3d29effc6d2982592ac\",\"sentDate\":\"30/06/2024\",\"authorizationDate\":\"30/06/2024\",\"cStat\":\"100\",\"message\":\"Autorizado o uso da NF-e\",\"pdfLink\":\"https://api.plugnotas.com.br/nfce/6681c3d29effc6d2982592ac/pdf\",\"token\":\"31240626732707000186650010000000591166683323\",\"value\":10,\"xmlLink\":\"https://api.plugnotas.com.br/nfce/6681c3d29effc6d2982592ac/xml\",\"id\":\"6681c3d1907dc26c8f6a35ac\",\"statusDescription\":\"Nota Emitida\"}}");
 
             PrinterController controller = new PrinterController();
             var connect = controller.OpenConnection();

@@ -3,32 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7DE0415A-5492-47A9-91D9-B89DF48E2E8D}|GrowleriaWebPOS\\GrowleriaWebPOS.csproj|c:\\users\\henrique elias\\git\\growleria-pos\\growleriawebpos\\controllers\\printerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7DE0415A-5492-47A9-91D9-B89DF48E2E8D}|GrowleriaWebPOS\\GrowleriaWebPOS.csproj|solutionrelative:growleriawebpos\\controllers\\printerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5885377F-2045-4E16-A4AA-189CF91209B4}|GrowleriaPOS\\GrowleriaPOS.csproj|C:\\Users\\Henrique Elias\\Git\\growleria-pos\\growleriapos\\controllers\\printercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5885377F-2045-4E16-A4AA-189CF91209B4}|GrowleriaPOS\\GrowleriaPOS.csproj|c:\\users\\henrique elias\\git\\growleria-pos\\growleriapos\\controllers\\printercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5885377F-2045-4E16-A4AA-189CF91209B4}|GrowleriaPOS\\GrowleriaPOS.csproj|solutionrelative:growleriapos\\controllers\\printercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5885377F-2045-4E16-A4AA-189CF91209B4}|GrowleriaPOS\\GrowleriaPOS.csproj|C:\\Users\\Henrique Elias\\Git\\growleria-pos\\growleriapos\\models\\nfcemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5885377F-2045-4E16-A4AA-189CF91209B4}|GrowleriaPOS\\GrowleriaPOS.csproj|solutionrelative:growleriapos\\models\\nfcemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5885377F-2045-4E16-A4AA-189CF91209B4}|GrowleriaPOS\\GrowleriaPOS.csproj|C:\\Users\\Henrique Elias\\Git\\growleria-pos\\growleriapos\\models\\nfcepaymentmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5885377F-2045-4E16-A4AA-189CF91209B4}|GrowleriaPOS\\GrowleriaPOS.csproj|solutionrelative:growleriapos\\models\\nfcepaymentmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5885377F-2045-4E16-A4AA-189CF91209B4}|GrowleriaPOS\\GrowleriaPOS.csproj|C:\\Users\\Henrique Elias\\Git\\growleria-pos\\growleriapos\\models\\nfceitemmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5885377F-2045-4E16-A4AA-189CF91209B4}|GrowleriaPOS\\GrowleriaPOS.csproj|solutionrelative:growleriapos\\models\\nfceitemmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5885377F-2045-4E16-A4AA-189CF91209B4}|GrowleriaPOS\\GrowleriaPOS.csproj|C:\\Users\\Henrique Elias\\Git\\growleria-pos\\growleriapos\\models\\tokenmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5885377F-2045-4E16-A4AA-189CF91209B4}|GrowleriaPOS\\GrowleriaPOS.csproj|solutionrelative:growleriapos\\models\\tokenmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5885377F-2045-4E16-A4AA-189CF91209B4}|GrowleriaPOS\\GrowleriaPOS.csproj|C:\\Users\\Henrique Elias\\Git\\growleria-pos\\growleriapos\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5885377F-2045-4E16-A4AA-189CF91209B4}|GrowleriaPOS\\GrowleriaPOS.csproj|solutionrelative:growleriapos\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7DE0415A-5492-47A9-91D9-B89DF48E2E8D}|GrowleriaWebPOS\\GrowleriaWebPOS.csproj|c:\\users\\henrique elias\\git\\growleria-pos\\growleriawebpos\\controllers\\printerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7DE0415A-5492-47A9-91D9-B89DF48E2E8D}|GrowleriaWebPOS\\GrowleriaWebPOS.csproj|solutionrelative:growleriawebpos\\controllers\\printerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,93 +18,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PrinterController.cs",
-              "DocumentMoniker": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaPOS\\Controllers\\PrinterController.cs",
-              "RelativeDocumentMoniker": "GrowleriaPOS\\Controllers\\PrinterController.cs",
-              "ToolTip": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaPOS\\Controllers\\PrinterController.cs",
-              "RelativeToolTip": "GrowleriaPOS\\Controllers\\PrinterController.cs",
-              "ViewState": "AQIAABwBAAAAAAAAAAArwJ8AAAA1AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-30T23:00:53.54Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "NFCeItemModel.cs",
-              "DocumentMoniker": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaPOS\\Models\\NFCeItemModel.cs",
-              "RelativeDocumentMoniker": "GrowleriaPOS\\Models\\NFCeItemModel.cs",
-              "ToolTip": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaPOS\\Models\\NFCeItemModel.cs",
-              "RelativeToolTip": "GrowleriaPOS\\Models\\NFCeItemModel.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAuwBIAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-30T22:58:56.603Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "NFCePaymentModel.cs",
-              "DocumentMoniker": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaPOS\\Models\\NFCePaymentModel.cs",
-              "RelativeDocumentMoniker": "GrowleriaPOS\\Models\\NFCePaymentModel.cs",
-              "ToolTip": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaPOS\\Models\\NFCePaymentModel.cs",
-              "RelativeToolTip": "GrowleriaPOS\\Models\\NFCePaymentModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-30T22:57:55.495Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "PrintersController.cs",
               "DocumentMoniker": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaWebPOS\\Controllers\\PrintersController.cs",
               "RelativeDocumentMoniker": "GrowleriaWebPOS\\Controllers\\PrintersController.cs",
               "ToolTip": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaWebPOS\\Controllers\\PrintersController.cs",
               "RelativeToolTip": "GrowleriaWebPOS\\Controllers\\PrintersController.cs",
-              "ViewState": "AQIAAH4AAAAAAAAAAAAuwIIAAABGAAAA",
+              "ViewState": "AQIAAGsAAAAAAAAAAAAqwHYAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-29T01:08:22.818Z",
+              "WhenOpened": "2024-07-01T00:15:45.147Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "NFCeModel.cs",
-              "DocumentMoniker": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaPOS\\Models\\NFCeModel.cs",
-              "RelativeDocumentMoniker": "GrowleriaPOS\\Models\\NFCeModel.cs",
-              "ToolTip": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaPOS\\Models\\NFCeModel.cs",
-              "RelativeToolTip": "GrowleriaPOS\\Models\\NFCeModel.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAAAAgAAAAIAAAA",
+              "DocumentIndex": 0,
+              "Title": "PrinterController.cs",
+              "DocumentMoniker": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaPOS\\Controllers\\PrinterController.cs",
+              "RelativeDocumentMoniker": "GrowleriaPOS\\Controllers\\PrinterController.cs",
+              "ToolTip": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaPOS\\Controllers\\PrinterController.cs",
+              "RelativeToolTip": "GrowleriaPOS\\Controllers\\PrinterController.cs",
+              "ViewState": "AQIAAL8AAAAAAAAAAAAawMsAAABTAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-30T22:48:35.078Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TokenModel.cs",
-              "DocumentMoniker": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaPOS\\Models\\TokenModel.cs",
-              "RelativeDocumentMoniker": "GrowleriaPOS\\Models\\TokenModel.cs",
-              "ToolTip": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaPOS\\Models\\TokenModel.cs",
-              "RelativeToolTip": "GrowleriaPOS\\Models\\TokenModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-30T22:48:30.186Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaPOS\\Program.cs",
-              "RelativeDocumentMoniker": "GrowleriaPOS\\Program.cs",
-              "ToolTip": "C:\\Users\\Henrique Elias\\Git\\growleria-pos\\GrowleriaPOS\\Program.cs",
-              "RelativeToolTip": "GrowleriaPOS\\Program.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABAAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-26T02:40:26.736Z"
+              "WhenOpened": "2024-06-30T23:50:32.504Z",
+              "EditorCaption": ""
             }
           ]
         }
