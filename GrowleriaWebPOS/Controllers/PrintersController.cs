@@ -1,6 +1,7 @@
 ﻿
 using GrowleriaPOS.Controllers;
 using GrowleriaPOS.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,12 +53,17 @@ namespace GrowleriaWebPOS.Controllers
         [Route("api/version")]
         public IHttpActionResult GetVersion()
         {
-           return Json<ResponseMessage>(new Controllers.ResponseMessage("v2.0.0"));
+private const string Version = "v2.0.0";
+
+public IHttpActionResult GetVersion()
+{
+    return Json<ResponseMessage>(new Controllers.ResponseMessage(Version));
+}
         }
 
         // POST api/values
         [Route("api/printers/cashier")]
-        public IHttpActionResult Post([FromBody]CashierModel value)
+        public IHttpActionResult Post([FromBody] CashierModel value)
         {
             PrinterController controller = new PrinterController();
             var connect = controller.OpenConnection();
@@ -76,7 +82,7 @@ namespace GrowleriaWebPOS.Controllers
 
         // POST api/values
         [Route("api/printers/token")]
-        public IHttpActionResult PostToken([FromBody]TokenModel value)
+        public IHttpActionResult PostToken([FromBody] TokenModel value)
         {
             PrinterController controller = new PrinterController();
             var connect = controller.OpenConnection();
@@ -90,7 +96,7 @@ namespace GrowleriaWebPOS.Controllers
         }
 
         [Route("api/printers/sale")]
-        public IHttpActionResult PostSale([FromBody]SaleModel value)
+        public IHttpActionResult PostSale([FromBody] SaleModel value)
         {
             PrinterController controller = new PrinterController();
             var connect = controller.OpenConnection();
@@ -105,7 +111,7 @@ namespace GrowleriaWebPOS.Controllers
         }
 
         [Route("api/printers/token/many")]
-        public IHttpActionResult PostManyToken([FromBody]List<TokenModel> value)
+        public IHttpActionResult PostManyToken([FromBody] List<TokenModel> value)
         {
             PrinterController controller = new PrinterController();
             var connect = controller.OpenConnection();
@@ -124,6 +130,27 @@ namespace GrowleriaWebPOS.Controllers
 
 
             return Json(new { data = value });
+        }
+
+        [Route("api/printers/nfce")]
+        public IHttpActionResult PostNFCe([FromBody] NFCeModel nfce)
+        {
+
+            PrinterController controller = new PrinterController();
+            var connect = controller.OpenConnection();
+            if (!connect)
+            {
+                return Json<ResponseMessage>(new ResponseError("Erro ao conectar", controller.Error));
+            }
+
+
+
+            controller.PrintNFCeReceipt(nfce);
+
+            var close = controller.CloseConnection();
+
+
+            return Json(new { data = nfce});
         }
     }
 }
