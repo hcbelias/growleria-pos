@@ -53,7 +53,12 @@ namespace GrowleriaWebPOS.Controllers
         [Route("api/version")]
         public IHttpActionResult GetVersion()
         {
-            return Json<ResponseMessage>(new Controllers.ResponseMessage("v2.0.0"));
+private const string Version = "v2.0.0";
+
+public IHttpActionResult GetVersion()
+{
+    return Json<ResponseMessage>(new Controllers.ResponseMessage(Version));
+}
         }
 
         // POST api/values
