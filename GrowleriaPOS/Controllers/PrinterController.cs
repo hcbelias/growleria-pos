@@ -155,7 +155,13 @@ namespace GrowleriaPOS.Controllers
 
         public bool PrintNFCeReceipt(NFCeModel nfce)
         {
-            String urlSefaz = "https://hportalsped.fazenda.mg.gov.br/portalnfce/sistema/consultaarg.xhtml";
+private const string UrlSefaz = "https://hportalsped.fazenda.mg.gov.br/portalnfce/sistema/consultaarg.xhtml";
+
+public bool PrintNFCeReceipt(NFCeModel nfce)
+{
+    try
+    {
+        // Use UrlSefaz here
             try
             {
                 Printer.PrintNormal(PrinterStation.Receipt, "\u001b|1B");
